@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-segment (ionChange)="onFilterUpdate($event)">
+  <ion-segment (ionChange)="onFilterUpdate($event)" value="all">
     <ion-segment-button value="all">All Places</ion-segment-button>
     <ion-segment-button value="bookable">Bookable Places</ion-segment-button>
   </ion-segment>
@@ -38,8 +38,8 @@
     <ion-row>
       <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
 
-        <ion-virtual-scroll [items]="loadedPlaces">
-          <ion-item detail *virtualItem="let place" approxItemHeight="70px" [routerLink]="['/','places','tabs','discover', place.id]">
+        <ion-list>
+          <ion-item *ngFor="let place of loadedPlaces">
             <ion-thumbnail slot="start">
               <ion-img [src]="place.imgUrl"></ion-img>
             </ion-thumbnail>
@@ -48,7 +48,7 @@
               <p>{{place.description}}</p>
             </ion-label>
           </ion-item>
-        </ion-virtual-scroll>
+        </ion-list>
 
       </ion-col>
     </ion-row>
